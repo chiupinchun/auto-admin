@@ -66,3 +66,18 @@ select {
 .btn:hover {
   color: #FFFFFF;
 }
+
+.collapsible {
+  position: relative;
+  bottom: 0;
+  max-height: 100vh;
+  overflow-y: hidden;
+  opacity: 1;
+  transition: .25s;
+}
+
+.collapsible.collapsed {
+  max-height: 0;
+  bottom: 1rem;
+  opacity: 0;
+}

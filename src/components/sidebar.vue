@@ -2,11 +2,18 @@
   <aside>
     <nav>
       <ul class="groups">
-        <li @click="group.active = !group.active" v-for="group in groups" :class="{ active: group.active }">
-          <a>{{ group.title }} <i>＜</i></a>
-          <ul class="links">
+        <li @click="group.active = !group.active" v-for="group in groups">
+          <a>
+            {{ group.title }}
+            <i :style="{
+              transform: `rotate(${group.active ? 90 : 270}deg)`
+            }">＜</i>
+          </a>
+          <ul class="links collapsible" :class="{ collapsed: !group.active }">
             <li v-for="link in group.children">
-              <RouterLink @click.stop :to="link.href" :class="{ active: route.path === link.href }">{{ link.title }}
+              <RouterLink @click.stop :to="link.href" :class="{
+                active: route.path === link.href
+              }">{{ link.title }}
               </RouterLink>
             </li>
           </ul>
@@ -70,20 +77,13 @@ nav {
         i {
           display: inline-block;
           font-style: normal;
-          transform: rotate(270deg);
           transition: .25s;
           user-select: none;
         }
       }
 
       ul.links {
-        position: relative;
-        bottom: 1rem;
-        max-height: 0;
         padding: 0 .5rem;
-        overflow-y: hidden;
-        opacity: 0;
-        transition: .15s;
 
         a {
           display: block;
@@ -98,18 +98,6 @@ nav {
             background-color: var(--primary);
             color: var(--primary-text)
           }
-        }
-      }
-
-      &.active {
-        a i {
-          transform: rotate(90deg);
-        }
-
-        ul.links {
-          max-height: 100vh;
-          bottom: 0;
-          opacity: 1;
         }
       }
     }
