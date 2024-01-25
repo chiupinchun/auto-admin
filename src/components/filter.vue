@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div class="filter-block">
     <h2>Filter</h2>
     <h3>篩選器</h3>
     <div class="collapsible" :class="{ collapsed }">
@@ -43,7 +43,7 @@
         transform: collapsed ? 'rotate(180deg)' : ''
       }">v</button>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -72,7 +72,7 @@ const collapsed = ref(false)
 </script>
 
 <style lang="less" scoped>
-section {
+.filter-block {
   position: relative;
   padding: 1.5rem;
   border: 1px solid lightgray;

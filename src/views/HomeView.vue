@@ -3,5 +3,5 @@ import Filter from '@/components/filter.vue';
 </script>
 
 <template>
-  <Filter />
+  welcome
 </template>
