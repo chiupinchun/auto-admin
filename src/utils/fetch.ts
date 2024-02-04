@@ -1,14 +1,14 @@
 import { ref, watch, type Ref } from "vue"
 
-interface UseFetchOption<T = unknown> {
+interface UseFetchOption<T = unknown, K = unknown> {
   watch?: unknown[]
-  transform?: (res: any) => T
+  transform?: (res: T) => K
 }
-export const useFetch = <T = unknown>(
+export const useFetch = <T = unknown, K = unknown>(
   fetcher: () => Promise<T>,
-  option: UseFetchOption<T> = {}
+  option: UseFetchOption<T, K> = {}
 ) => {
-  const data: Ref<T | null> = ref(null)
+  const data: Ref<T | K | null> = ref(null)
   const pending = ref(true)
   const error = ref(null)
 

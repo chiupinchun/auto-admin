@@ -56,6 +56,12 @@ interface Props {
 
 const props = defineProps<Props>();
 
+interface Emits {
+  (event: 'on-search', payload: Record<string, unknown>): void
+}
+
+const emit = defineEmits<Emits>()
+
 const data = reactive<Record<string, unknown>>({});
 props.cols.forEach(col => {
   if (col.type === 'checkbox') {
@@ -64,7 +70,7 @@ props.cols.forEach(col => {
 })
 
 const onSearch = () => {
-  console.log(data)
+  emit('on-search', data)
 }
 
 const collapsed = ref(false)

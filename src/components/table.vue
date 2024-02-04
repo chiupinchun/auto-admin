@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table v-if="data?.length">
     <thead>
       <tr>
         <th v-for="col in Object.values(format)">{{ col }}</th>
@@ -13,13 +13,14 @@
       </tr>
     </tbody>
   </table>
+  <div v-else>沒有資料。</div>
 </template>
 
 <script lang="ts" setup>
 import { parseTableCeil } from '@/utils/parseData'
 
 interface Props {
-  data: Record<string, unknown>[]
+  data?: Record<string, unknown>[]
   /**
    * { api的key: 對應的中文 }
    */
